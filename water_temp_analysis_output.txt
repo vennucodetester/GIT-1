@@ -1,0 +1,248 @@
+================================================================================
+THERMODYNAMIC ANALYSIS: WATER TEMPERATURE TRANSIENTS
+================================================================================
+
+Loading data files...
+Input data: 1440 rows
+Calculated data: 1243 rows
+
+================================================================================
+PART 1: WATER TEMPERATURE SWING ANALYSIS
+================================================================================
+
+Water Inlet Temperature (°F):
+  Mean:   79.62 °F
+  Std:    3.36 °F
+  Min:    74.20 °F
+  Max:    85.95 °F
+  Range:  11.75 °F
+
+Water Outlet Temperature (°F):
+  Mean:   87.25 °F
+  Std:    4.15 °F
+  Min:    75.70 °F
+  Max:    96.04 °F
+  Range:  20.33 °F
+
+Water Temperature Difference ΔT (°F):
+  Mean:   -7.63 °F
+  Std:    3.41 °F
+  Min:    -13.70 °F
+  Max:    0.42 °F
+  Range:  14.13 °F
+
+Water Inlet Temperature Rate of Change (°F per sample):
+  Mean:   4.858 °F/sample
+  Median: 5.284 °F/sample
+  90th %: 8.253 °F/sample
+  Max:    9.639 °F/sample
+
+Rolling Statistics (30-point window ~5 minutes):
+  Max rolling std:   3.728 °F
+  Max rolling range: 11.275 °F
+  Mean rolling std:  3.404 °F
+
+================================================================================
+PART 2: DISCHARGE PRESSURE VARIATION ANALYSIS
+================================================================================
+
+Discharge/Liquid Pressure (psig):
+  Mean:   123.94 psig
+  Std:    32.28 psig
+  Min:    38.33 psig
+  Max:    213.80 psig
+  Range:  175.47 psig
+
+Discharge Pressure Rate of Change (psig per sample):
+  Mean:   31.576 psig/sample
+  Median: 29.501 psig/sample
+  90th %: 61.472 psig/sample
+  Max:    129.181 psig/sample
+
+Discharge Pressure Rolling Statistics (30-point window):
+  Max rolling std:   44.844 psig
+  Max rolling range: 155.563 psig
+  Mean rolling std:  28.591 psig
+
+Correlation between Water Inlet Temp and Discharge Pressure: 0.569
+
+================================================================================
+PART 3: SUBCOOLING VARIATION AND TRANSIENT EFFECTS
+================================================================================
+
+Subcooling (°F):
+  Mean:   -4.08 °F
+  Std:    9.26 °F
+  Min:    -33.40 °F
+  Max:    29.89 °F
+  Range:  63.30 °F
+
+Negative subcooling occurrences: 789 (63.5%)
+
+Subcooling Distribution:
+  < -10°F:    340 rows (27.4%)
+  -10 to 0°F: 449 rows (36.1%)
+  0 to 5°F:   263 rows (21.2%)
+  5 to 10°F:  143 rows (11.5%)
+  > 10°F:     48 rows (3.9%)
+
+================================================================================
+PART 4: STEADY-STATE vs TRANSIENT PERIOD IDENTIFICATION
+================================================================================
+
+Steady-state periods identified: 0 / 1440 (0.0%)
+Transient periods: 1440 / 1440 (100.0%)
+
+Steady-state criteria:
+  - Water inlet temp rolling std < 0.5°F over 20 samples
+  - Discharge pressure rolling std < 1.0 psig over 20 samples
+
+================================================================================
+PART 5: DATA QUALITY vs STABILITY CORRELATION
+================================================================================
+
+================================================================================
+PART 6: MOVING AVERAGE FILTERING EFFECTIVENESS
+================================================================================
+
+Effect of Moving Average on Water Inlet Temperature:
+  5-point MA: Std reduced by 74.1% (3.36 → 0.87 °F)
+  10-point MA: Std reduced by 86.6% (3.36 → 0.45 °F)
+  20-point MA: Std reduced by 90.3% (3.36 → 0.33 °F)
+  30-point MA: Std reduced by 92.3% (3.36 → 0.26 °F)
+
+Effect of Moving Average on Discharge Pressure:
+  5-point MA: Std reduced by 32.9% (32.28 → 21.67 psig)
+  10-point MA: Std reduced by 39.5% (32.28 → 19.52 psig)
+  20-point MA: Std reduced by 48.3% (32.28 → 16.68 psig)
+  30-point MA: Std reduced by 56.1% (32.28 → 14.18 psig)
+
+================================================================================
+PART 7: THERMODYNAMIC ANALYSIS OF NEGATIVE SUBCOOLING
+================================================================================
+
+Can negative subcooling exist in real systems?
+
+SCENARIO 1: Measurement During Transients
+  - Water temperature increases rapidly
+  - Condensing pressure rises (follows water temp)
+  - Saturation temperature increases
+  - Liquid line sensor (T_4a) responds slower than pressure sensor
+  - Result: APPARENT negative subcooling during transition
+  - Duration: Temporary (seconds to minutes)
+
+SCENARIO 2: Pressure Drop Effects
+  - Pressure measured at compressor discharge
+  - Temperature measured downstream after pressure drop
+  - Using discharge pressure to calculate T_sat may be incorrect
+  - Actual liquid line pressure is lower → lower T_sat
+  - Result: FALSE negative subcooling due to reference pressure mismatch
+
+SCENARIO 3: Flash Gas in Liquid Line (TRUE thermodynamic problem)
+  - Insufficient subcooling at condenser outlet
+  - Pressure drop in liquid line causes refrigerant to flash
+  - Two-phase flow enters TXV
+  - Result: REAL negative subcooling - SYSTEM MALFUNCTION
+  - This WILL cause capacity problems
+
+================================================================================
+PART 8: RECOMMENDED DATA FILTERING STRATEGIES
+================================================================================
+
+STRATEGY 1: Steady-State Detection (RECOMMENDED PRIMARY METHOD)
+--------------------------------------------------------------------------------
+Filter Criteria:
+  1. Rolling std of water inlet temp < 0.5°F (20-point window)
+  2. Rolling std of discharge pressure < 1.0 psig (20-point window)
+  3. Rate of change < threshold for key parameters
+
+Advantages:
+  - Addresses root cause (transient conditions)
+  - No arbitrary thresholds on results
+  - Physically meaningful
+  - Allows negative subcooling during steady-state if real
+
+Implementation:
+  - Calculate rolling statistics on input sensors
+  - Flag rows where stability criteria NOT met
+  - Option to exclude transient data OR flag with warning
+
+STRATEGY 2: Moving Average Smoothing
+--------------------------------------------------------------------------------
+Filter Method:
+  1. Apply 10-20 point moving average to sensor inputs
+  2. Recalculate thermodynamic properties from smoothed inputs
+  3. Use smoothed values for performance calculations
+
+Advantages:
+  - Reduces noise and transient spikes
+  - Preserves all data (no exclusion)
+  - Simple to implement
+
+Disadvantages:
+  - May mask real rapid changes
+  - Edge effects at start/end of data
+  - Requires re-calculation of all properties
+
+STRATEGY 3: Multi-Criteria Physical Validation
+--------------------------------------------------------------------------------
+Filter Criteria (apply during steady-state only):
+  1. Subcooling: -2°F < SC < 20°F (allow small negative during transient)
+  2. Superheat: 5°F < SH < 30°F
+  3. Pressure ratio: 2.0 < PR < 4.0 for R290
+  4. Cooling capacity: Must be positive
+  5. Mass flow rate: Within reasonable bounds (50-500 lb/hr)
+  6. ΔT water: 1°F < ΔT < 15°F
+
+Advantages:
+  - Multiple cross-checks
+  - Catches multiple error types
+
+Disadvantages:
+  - Arbitrary thresholds
+  - May reject valid unusual operating points
+
+STRATEGY 4: Outlier Detection (Statistical)
+--------------------------------------------------------------------------------
+Filter Method:
+  1. Calculate Z-scores for key outputs (qc, mass flow, etc.)
+  2. Flag values > 3 standard deviations from mean
+  3. Use robust statistics (median, IQR) instead of mean/std
+
+Advantages:
+  - Data-driven, not assumption-based
+  - Adapts to actual data distribution
+
+Disadvantages:
+  - May reject valid extreme operating conditions
+  - Doesn't use physical knowledge
+
+================================================================================
+FINAL RECOMMENDATION
+================================================================================
+
+HYBRID APPROACH:
+
+PRIMARY FILTER: Steady-State Detection
+  → Exclude data during transient water temperature or pressure changes
+  → This addresses the root cause of most bad data
+
+SECONDARY FILTER: Physical Bounds (Loose)
+  → Apply only to steady-state data
+  → Allow negative subcooling if: |SC| < 2°F and qc is reasonable
+  → Flag severe violations: SC < -5°F, SH < 3°F, qc < 0, etc.
+
+OPTIONAL: Moving Average for Visualization
+  → Apply 10-point MA to smooth plots
+  → Do NOT use for excluding data
+
+This approach:
+  ✓ Respects physical reality (transients exist)
+  ✓ Uses measurement timing as primary criterion
+  ✓ Allows unexpected but valid data
+  ✓ Provides clear user control
+
+================================================================================
+SUMMARY STATISTICS
+================================================================================
+
