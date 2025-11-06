@@ -1842,6 +1842,7 @@ class DraggableTextItem(QGraphicsTextItem):
         self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsSelectable, True)
         self.setAcceptHoverEvents(True)
         self.setCursor(Qt.CursorShape.OpenHandCursor)
+        self.setAcceptHoverEvents(True)  # Required for cursor changes and proper mouse interaction
 
     def mousePressEvent(self, event):
         """Handle mouse press - start dragging."""
@@ -2030,6 +2031,7 @@ class SensorBoxItem(QGraphicsRectItem):
         label_item = DraggableTextItem(label_text, self, self, sensor_id, 'label')
         label_item.setDefaultTextColor(QColor("#000000"))
         label_item.setPos(x + label_offset['dx'], y + label_offset['dy'])
+        label_item.setZValue(150)  # Ensure it's above other items for proper mouse interaction
         sensor_info['label_item'] = label_item
 
         # Create number item (column 2) - now draggable
@@ -2040,6 +2042,7 @@ class SensorBoxItem(QGraphicsRectItem):
         number_item = DraggableTextItem(number_text, self, self, sensor_id, 'number')
         number_item.setDefaultTextColor(QColor("#000000"))
         number_item.setPos(x + number_offset['dx'], y + number_offset['dy'])
+        number_item.setZValue(150)  # Ensure it's above other items for proper mouse interaction
         sensor_info['number_item'] = number_item
 
         # Create value item (column 3) - now draggable
@@ -2055,6 +2058,7 @@ class SensorBoxItem(QGraphicsRectItem):
         value_item = DraggableTextItem(value_text, self, self, sensor_id, 'value')
         value_item.setDefaultTextColor(QColor("#000000"))
         value_item.setPos(x + value_offset['dx'], y + value_offset['dy'])
+        value_item.setZValue(150)  # Ensure it's above other items for proper mouse interaction
         sensor_info['value_item'] = value_item
 
         # Store in sensors dict
