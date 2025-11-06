@@ -7,11 +7,44 @@
 - Reviewing pull requests or commits
 - User explicitly requests verification or testing
 - After implementing new features that interact with existing functionality
+- **BEFORE committing code** - to verify critical features still work
 
 ---
 
 ## Purpose
 This skill defines the critical functional requirements that must remain intact and verified after any code changes. All future modifications must ensure these features continue to work correctly.
+
+---
+
+## ⚠️ CRITICAL REMINDER: Self-Verification Before Commit
+
+**Before committing ANY code change, you MUST:**
+
+1. **Search for similar existing implementations**
+   - Use grep to find patterns: `grep -n "setAcceptHoverEvents\|ItemIsMovable\|similar_pattern" *.py`
+   - Compare your implementation side-by-side with existing code
+   - Ensure you copied ALL patterns, not just some
+
+2. **Check common missing patterns** (from planning skill Step 4):
+   - Draggable items: `setAcceptHoverEvents(True)`, hover event handlers
+   - Filters: null/NaN checks, session save/load
+   - UI components: signal connections, tooltips, layouts
+   - Calculations: unit conversions, error handling
+
+3. **Run verification commands:**
+   ```bash
+   python3 -m py_compile your_file.py  # Syntax check
+   grep -n "critical_pattern" your_file.py  # Pattern check
+   ```
+
+4. **Document self-check in commit message:**
+   - List what patterns you searched for
+   - Confirm you verified against existing code
+   - Note any edge cases tested
+
+**If you skip this, you WILL miss critical patterns and the user will find bugs during testing.**
+
+See planning skill Step 4 for complete self-verification checklist.
 
 ---
 

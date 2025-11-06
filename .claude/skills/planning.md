@@ -481,6 +481,165 @@ I'll wait for your approval before writing any code.
 
 ---
 
+### **Step 4: Post-Implementation Self-Verification** (CRITICAL - NEW)
+
+**After implementing ANY code change, BEFORE declaring it complete:**
+
+---
+
+#### A. Search for Similar Existing Implementations
+
+**MANDATORY:** Search the codebase for similar patterns and compare your implementation.
+
+**For UI Items (buttons, dialogs, widgets):**
+```bash
+grep -n "class.*Item\|class.*Widget\|class.*Dialog" *.py
+grep -n "def __init__" <similar_class_file>.py
+```
+
+**For Draggable/Hoverable Items:**
+```bash
+grep -n "setAcceptHoverEvents" *.py
+grep -n "ItemIsMovable\|ItemIsSelectable" *.py
+grep -n "mousePressEvent\|mouseReleaseEvent" *.py
+```
+
+**For Filters/Data Processing:**
+```bash
+grep -n "_apply.*filter\|def filter" *.py
+grep -n "get_filtered_data" *.py
+```
+
+**For Calculations:**
+```bash
+grep -n "CoolProp\|PropsSI" *.py
+grep -n "def.*calculate\|def.*compute" *.py
+```
+
+---
+
+#### B. Pattern Matching Checklist
+
+**Compare your implementation with existing similar code:**
+
+- [ ] **Initialization:** Does your `__init__` match the pattern of similar classes?
+  - Are you setting all the same flags? (ItemIsMovable, ItemIsSelectable, etc.)
+  - Are you calling the same setup methods? (setAcceptHoverEvents, setCursor, etc.)
+
+- [ ] **Event Handlers:** If similar items have hoverEnterEvent/hoverLeaveEvent, do you?
+  - Check if existing draggable items have hover event handlers
+  - Copy the exact pattern if they do
+
+- [ ] **Data Persistence:** If similar features save state, do you?
+  - Check if similar filters save to session files
+  - Check if similar UI elements store offsets/positions
+
+- [ ] **Signal Connections:** If similar items emit signals, do you?
+  - Look for `.connect()` patterns in similar code
+  - Ensure you're following the same signal/slot architecture
+
+---
+
+#### C. Common Missing Patterns Checklist
+
+**These are FREQUENTLY missed - check ALL of them:**
+
+##### For Draggable/Interactive Items:
+- [ ] `setAcceptHoverEvents(True)` - Enables cursor changes on hover
+- [ ] `setCursor(Qt.CursorShape.PointingHandCursor)` - Shows hand cursor
+- [ ] `hoverEnterEvent()` / `hoverLeaveEvent()` - If other draggable items have them
+- [ ] `setFlag(QGraphicsItem.GraphicsItemFlag.ItemSendsGeometryChanges)` - If positions matter
+- [ ] `setZValue()` - If layering matters (check similar items)
+
+##### For Filters/Data Processing:
+- [ ] Null/NaN checks before filtering (`pd.isna()`, `is not None`)
+- [ ] Empty result handling (what if filter removes all rows?)
+- [ ] Session save/load for filter settings
+- [ ] Signal emission after filtering (`data_changed.emit()`)
+
+##### For UI Components:
+- [ ] Layout management (addWidget, addLayout, stretch factors)
+- [ ] Signal/slot connections (`.connect()` calls)
+- [ ] Tooltips (`.setToolTip()` if similar widgets have them)
+- [ ] Keyboard shortcuts (if similar actions have them)
+- [ ] Context menus (if similar items have right-click menus)
+
+##### For Calculations:
+- [ ] Unit conversions match existing patterns
+- [ ] CoolProp calls use same refrigerant/units as existing code
+- [ ] Error handling for invalid values (NaN, infinite, out of range)
+- [ ] Output column names match existing structure
+
+---
+
+#### D. Self-Review Questions
+
+**Ask yourself these questions BEFORE committing:**
+
+1. **Did I search for similar code?**
+   - "Are there other draggable items in this codebase?"
+   - "How do THEY handle initialization?"
+
+2. **Did I copy ALL the patterns, not just some?**
+   - "PortItem has setAcceptHoverEvents - did I add it too?"
+   - "Other filters save to session - did I add save/load?"
+
+3. **Did I test edge cases?**
+   - "What if the data column is missing?"
+   - "What if all values are NaN?"
+   - "What if user enters invalid input?"
+
+4. **Will this work with existing features?**
+   - "Does this work with discharge press filter?"
+   - "Does this work with custom time range?"
+   - "Does this update the P-h diagram correctly?"
+
+---
+
+#### E. Mandatory Verification Commands
+
+**Run these commands BEFORE declaring implementation complete:**
+
+```bash
+# 1. Check your new class/method exists
+grep -n "class YourNewClass\|def your_new_method" your_file.py
+
+# 2. Find ALL similar implementations
+grep -n "similar_pattern" *.py
+
+# 3. Compare side-by-side (example for draggable items)
+grep -A 20 "class PortItem" diagram_components.py
+grep -A 20 "class YourNewItem" diagram_components.py
+
+# 4. Check for common missing patterns
+grep -n "setAcceptHoverEvents" your_file.py  # Should return results!
+grep -n "hoverEnterEvent" your_file.py       # If others have it, you should too!
+
+# 5. Syntax check
+python3 -m py_compile your_file.py
+```
+
+---
+
+#### F. Documentation of Self-Check
+
+**After verifying, add a comment in your commit message:**
+
+```
+Fix: Add draggable labels to sensor boxes
+
+Implementation verified against existing patterns:
+- Searched for similar draggable items (PortItem, PipeItem, WaypointHandle)
+- Copied exact initialization pattern including setAcceptHoverEvents(True)
+- Added hover event handlers matching existing code
+- Verified offset persistence matches sensor box pattern
+- Tested with existing sensor data
+
+Self-check complete - no missing patterns found.
+```
+
+---
+
 ### **Implementation Guidelines** (After Approval)
 
 Once the user approves the plan:
@@ -495,15 +654,23 @@ Once the user approves the plan:
    - After UI changes: Manual testing of user workflows
    - Before final commit: Full regression checklist from testing skill
 
-3. **Update documentation:**
+3. **BEFORE committing - Run Step 4 Self-Verification:**
+   - Search for similar implementations
+   - Compare patterns side-by-side
+   - Check common missing patterns checklist
+   - Run verification commands
+   - Document self-check in commit message
+
+4. **Update documentation:**
    - Add docstrings to new methods
    - Update README if public API changes
    - Document new config keys in session file format
 
-4. **Commit with clear messages:**
+5. **Commit with clear messages:**
    - Format: `"Add superheat range filter to Calculations Tab"`
    - Include: What changed, why, and any breaking changes
    - Reference: Issue numbers if applicable
+   - Include: Self-verification statement
 
 ---
 
@@ -525,8 +692,9 @@ Once the user approves the plan:
 
 ## Planning Checklist
 
-Before implementing any feature, ensure:
+Before AND after implementing any feature, ensure:
 
+### Pre-Implementation:
 - [ ] **Step 1 Complete:** Clarified requirements, explored codebase, drafted high-level plan
 - [ ] **Step 2 Complete:** Assessed impact on calculations, data flow, UI, cross-tab dependencies
 - [ ] **Step 2 Complete:** Verified no breaking changes to critical features (testing skill)
@@ -537,7 +705,14 @@ Before implementing any feature, ensure:
 - [ ] **Step 3 Complete:** Requested user approval
 - [ ] **User Approved:** Received explicit "go ahead" or approval message
 
-**If ALL boxes checked, proceed with implementation. Otherwise, loop back to clarify/adjust.**
+### Post-Implementation (CRITICAL):
+- [ ] **Step 4 Complete:** Searched for similar existing implementations
+- [ ] **Step 4 Complete:** Compared implementation patterns side-by-side
+- [ ] **Step 4 Complete:** Checked common missing patterns checklist
+- [ ] **Step 4 Complete:** Ran verification commands (grep, syntax check)
+- [ ] **Step 4 Complete:** Documented self-check in commit message
+
+**If ALL boxes checked, commit and push. Otherwise, fix missing patterns first.**
 
 ---
 
