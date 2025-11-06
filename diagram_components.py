@@ -1840,6 +1840,7 @@ class DraggableTextItem(QGraphicsTextItem):
         # Make the item movable
         self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsSelectable, True)
+        self.setAcceptHoverEvents(True)
         self.setCursor(Qt.CursorShape.OpenHandCursor)
 
     def mousePressEvent(self, event):
