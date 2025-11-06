@@ -1,0 +1,26 @@
+    def save_label_offset(self, sensor_id, item_type, dx, dy):
+        """
+        Save the offset for a label relative to its dot.
+
+        Args:
+            sensor_id: The sensor ID
+            item_type: Type of item ('label', 'number', or 'value')
+            dx: X offset from dot
+            dy: Y offset from dot
+        """
+        # Find the sensor in box_data
+        if 'sensors' in self.box_data:
+            for sensor in self.box_data['sensors']:
+                if sensor['id'] == sensor_id:
+                    # Initialize offsets dict if it doesn't exist
+                    if 'offsets' not in sensor:
+                        sensor['offsets'] = {}
+
+                    # Store the offset
+                    sensor['offsets'][item_type] = {'dx': dx, 'dy': dy}
+
+                    # Update in data manager if available
+                    if self.data_manager:
+                        self.data_manager.save_diagram()
+
+                    break

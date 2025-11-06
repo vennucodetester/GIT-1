@@ -1,0 +1,52 @@
+        # Load stored offsets from box_data
+        stored_offsets = {}
+        if 'sensors' in self.box_data:
+            for sensor in self.box_data['sensors']:
+                if sensor['id'] == sensor_id:
+                    stored_offsets = sensor.get('offsets', {})
+                    break
+
+        # Default offsets if not stored
+        default_label_offset = {'dx': 15, 'dy': -8}
+        default_number_offset = {'dx': self.COL2_X - x, 'dy': -8}
+        default_value_offset = {'dx': self.COL3_X - x, 'dy': -8}
+
+        # Get offsets (use stored or default)
+        label_offset = stored_offsets.get('label', default_label_offset)
+        number_offset = stored_offsets.get('number', default_number_offset)
+        value_offset = stored_offsets.get('value', default_value_offset)
+
+        # Create label item (right of dot in column 1) - now draggable
+        label_text = sensor_info['label']
+        label_item = DraggableTextItem(label_text, self, self, sensor_id, 'label')
+        label_item.setDefaultTextColor(QColor("#000000"))
+        label_item.setPos(x + label_offset['dx'], y + label_offset['dy'])
+        sensor_info['label_item'] = label_item
+
+        # Create number item (column 2) - now draggable
+        number_text = ""
+        if mapped_sensor:
+            num = self.data_manager.get_sensor_number(mapped_sensor)
+            number_text = f"#{num}" if num is not None else ""
+        number_item = DraggableTextItem(number_text, self, self, sensor_id, 'number')
+        number_item.setDefaultTextColor(QColor("#000000"))
+        number_item.setPos(x + number_offset['dx'], y + number_offset['dy'])
+        sensor_info['number_item'] = number_item
+
+        # Create value item (column 3) - now draggable
+        value_text = ""
+        if mapped_sensor:
+            val = self.data_manager.get_sensor_value(mapped_sensor)
+            if val is None:
+                value_text = ""
+            elif isinstance(val, (int, float)):
+                value_text = f"{val:.1f}"
+            else:
+                value_text = str(val)
+        value_item = DraggableTextItem(value_text, self, self, sensor_id, 'value')
+        value_item.setDefaultTextColor(QColor("#000000"))
+        value_item.setPos(x + value_offset['dx'], y + value_offset['dy'])
+        sensor_info['value_item'] = value_item
+
+        # Store in sensors dict
+        self.sensors[sensor_id] = sensor_info
