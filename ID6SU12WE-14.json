@@ -1,6 +1,6 @@
 {
-  "name": "ID6SU12WE-9",
-  "timestamp": "2025-11-01T20:44:30.939702Z",
+  "name": "ID6SU12WE-14",
+  "timestamp": "2025-11-06T22:43:27.818572Z",
   "csvPath": "data.csv",
   "csvData": {
     "headers": [
@@ -166,7 +166,7 @@
       "Total Case Watts"
     ],
     "data": [],
-    "rows": 0,
+    "rows": 1440,
     "fileName": "data.csv"
   },
   "imagePath": null,
@@ -265,15 +265,35 @@
       "PS BC 48 LE Front",
       "PS BC 48 RE Rear",
       "PS BC 48 RE Front",
-      "PS BC RE Front"
+      "PS BC RE Front",
+      "PS BC RE Rear ",
+      "PS Fifth shelf 48 LE Front",
+      "PS Fifth shelf 48 LE Rear",
+      "PS Fifth shelf 48 RE Front",
+      "PS Fifth shelf 48 RE Rear",
+      "PS Fifth shelf LE Front",
+      "PS Fifth shelf LE Rear ",
+      "PS Fifth shelf RE Front",
+      "PS Fifth shelf RE Rear ",
+      "PS Fourth shelf LE Rear ",
+      "PS Fourth shelf RE Rear ",
+      "PS Second shelf LE Rear ",
+      "PS Second shelf RE Rear ",
+      "PS Third shelf LE Rear ",
+      "PS Third shelf RE Rear ",
+      "PS Top shelf RE Rear ",
+      "PS BC LE Rear ",
+      "AVG Prod Temp"
     ],
     "TXV INLET": [
       "Left TXV Inlet",
-      "CTR TXV Inlet"
+      "CTR TXV Inlet",
+      "Right TXV Inlet "
     ],
     "TXV BULB": [
       "Left TXV Bulb",
-      "CTR TXV Bulb"
+      "CTR TXV Bulb",
+      "Right TXV Bulb "
     ],
     "DISTR-INLET": [
       "Into CTR Distrubutor",
@@ -297,30 +317,18 @@
     ],
     "_ungrouped": [
       "Always off",
-      "Total Case Watts",
-      "120V Watts",
-      "120V Volts",
-      "Liqcond",
-      "Rear Wall",
-      "Defrost case 1",
-      "Ceiling",
-      "Ambient Dry Bulb Tb",
-      "AVG Prod Temp",
-      "Ambient Dry Bulb Ta",
-      "Right Wall",
-      "Run Time",
       "Evap",
-      "Ambient Wet Bulb",
-      "Front Wall",
-      "120V Amps",
-      "Left Wall"
+      "AVG Air In",
+      "AVG Air Off",
+      "Unnamed: 123"
     ],
     "CONDENSER": [
       "Water in HeatX",
       "Ref Temp in HeatX",
       "Ref Temp out HeatX",
       "Water out HeatX",
-      "Total Water Flow Meter"
+      "Total Water Flow Meter",
+      "Liqcond"
     ],
     "ELECTRICAL": [
       "Total Amps",
@@ -337,7 +345,38 @@
       "L2 Watts",
       "L3 Amps",
       "L3 Volts",
-      "L3 Watts"
+      "L3 Watts",
+      "120V Amps",
+      "120V Volts",
+      "120V Watts"
+    ],
+    "COIL OUT": [
+      "Left Coil Out 2",
+      "Left Coil Out 3",
+      "Left Coil Outlet 1",
+      "Right Coil Outlet ",
+      "CTR Coil Outlet "
+    ],
+    "FILTER DRIER": [
+      "Case inlet after filter drier",
+      "Inlet of filter drier"
+    ],
+    "AMBIENT": [
+      "Ambient Dry Bulb Ta",
+      "Ambient Dry Bulb Tb",
+      "Ambient Wet Bulb"
+    ],
+    "WALL TEMPS": [
+      "Front Wall",
+      "Left Wall",
+      "Rear Wall",
+      "Right Wall",
+      "Ceiling",
+      "Total Case Watts"
+    ],
+    "DEFROST": [
+      "Defrost case 1",
+      "Run Time"
     ]
   },
   "groupStates": {
@@ -358,7 +397,12 @@
     "SUPER HEAT": true,
     "_ungrouped": true,
     "CONDENSER": true,
-    "ELECTRICAL": true
+    "ELECTRICAL": true,
+    "COIL OUT": true,
+    "FILTER DRIER": true,
+    "AMBIENT": true,
+    "WALL TEMPS": true,
+    "DEFROST": true
   },
   "ratedInputs": {
     "rated_capacity_btu_hr": null,
@@ -370,8 +414,8 @@
       "compressor_a91fd4": {
         "type": "Compressor",
         "position": [
-          239.6243915820577,
-          -389.30970108023837
+          238.10351658205764,
+          -139.88620108023844
         ],
         "properties": {},
         "size": {
@@ -383,8 +427,8 @@
       "condenser_fba9eb": {
         "type": "Condenser",
         "position": [
-          -439.0,
-          -616.0
+          -442.04175000000004,
+          -433.4950000000001
         ],
         "properties": {
           "condenser_type": "Water Cooled"
@@ -398,8 +442,8 @@
       "junction_fddd85": {
         "type": "Junction",
         "position": [
-          -608.0,
-          -459.0
+          -609.0853268870904,
+          -363.1389079038779
         ],
         "properties": {
           "inlet_count": 1,
@@ -706,8 +750,8 @@
       "airsensorarray_42184f": {
         "type": "AirSensorArray",
         "position": [
-          -1206.660606158106,
-          -906.4789401068331
+          -1247.7242311581058,
+          -672.2641901068333
         ],
         "properties": {
           "curtain_type": "Secondary",
@@ -725,8 +769,8 @@
       "airsensorarray_8dddb9": {
         "type": "AirSensorArray",
         "position": [
-          -1207.6192317339937,
-          -996.6670638524706
+          -1250.2037317339937,
+          -750.2853138524706
         ],
         "properties": {
           "curtain_type": "Primary",
@@ -744,8 +788,8 @@
       "airsensorarray_67c33e": {
         "type": "AirSensorArray",
         "position": [
-          -1204.5082110829194,
-          -820.686233060661
+          -1245.5718360829194,
+          -589.5132330606612
         ],
         "properties": {
           "curtain_type": "Return",
@@ -763,8 +807,8 @@
       "shelvinggrid_dac239": {
         "type": "ShelvingGrid",
         "position": [
-          -1014.8170700626913,
-          406.254172400314
+          -654.3696950626914,
+          369.75317240031404
         ],
         "properties": {
           "shelving_type": "Modular",
@@ -898,8 +942,8 @@
         "fluid_state": "gas",
         "waypoints": [
           [
-            269.42580717519445,
-            -643.7020516254646
+            267.6043122797591,
+            -461.9129856138171
           ]
         ],
         "pressure_side": "high",
@@ -939,8 +983,8 @@
         "pressure_side": "high",
         "waypoints": [
           [
-            -607.9395085066163,
-            -643.4782608695654
+            -608.9172065565806,
+            -464.26363542154314
           ]
         ],
         "circuit_label": "None"
@@ -1408,7 +1452,12 @@
         "fluid_state": "liquid",
         "pressure_side": "high",
         "circuit_label": "Left",
-        "waypoints": []
+        "waypoints": [
+          [
+            -1192.8949999999998,
+            -289.62749999999994
+          ]
+        ]
       },
       "pipe_e39d50": {
         "start_component_id": "junction_fddd85",
@@ -1571,7 +1620,17 @@
       "ShelvingGrid.shelvinggrid_dac239.sensor_r5_bottom_c0": "PS BC LE Front",
       "ShelvingGrid.shelvinggrid_dac239.sensor_r5_bottom_c3": "PS BC RE Front",
       "ShelvingGrid.shelvinggrid_dac239.sensor_r5_top_c0": "PS BC LE Rear ",
-      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_top_c3": "PS BC RE Rear "
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_top_c3": "PS BC RE Rear ",
+      "sensorbox.sensorbox_ddcac6.sensor_d1f756ab": "Ambient Dry Bulb Ta",
+      "sensorbox.sensorbox_ddcac6.sensor_f19247f0": "Ambient Dry Bulb Tb",
+      "sensorbox.sensorbox_ddcac6.sensor_cc2e11fc": "Ambient Wet Bulb",
+      "sensorbox.sensorbox_ddcac6.sensor_cb821fc6": "AVG Prod Temp",
+      "sensorbox.sensorbox_ddcac6.sensor_385e50cc": "Total Volts",
+      "sensorbox.sensorbox_ddcac6.sensor_aed0d418": "Total Watts",
+      "sensorbox.sensorbox_ddcac6.sensor_06f00fa7": "Total Amps",
+      "sensorbox.sensorbox_ddcac6.sensor_3b6e75bc": "Defrost case 1",
+      "sensorbox.sensorbox_ddcac6.sensor_436fb3b1": "Liqcond",
+      "Junction.junction_fddd85.outlet_2": "Total Case Watts"
     },
     "custom_sensors": {
       "custom_superheat_85bc9d": {
@@ -1610,12 +1669,381 @@
         "circuit_label": "Right",
         "auto_detected": true
       }
+    },
+    "sensor_boxes": {
+      "sensorbox_ddcac6": {
+        "position": [
+          -1237.8154076086953,
+          349.22872826086945
+        ],
+        "title": "OTHER SENSORS",
+        "sensors": [
+          {
+            "id": "sensor_d1f756ab",
+            "label": "Ambient Dry Bulb Ta"
+          },
+          {
+            "id": "sensor_f19247f0",
+            "label": "Ambient Dry Bulb Tb"
+          },
+          {
+            "id": "sensor_cc2e11fc",
+            "label": "Ambient Wet bulb"
+          },
+          {
+            "id": "sensor_436fb3b1",
+            "label": "Liqcond"
+          },
+          {
+            "id": "sensor_3b6e75bc",
+            "label": "Defrost Case 1"
+          },
+          {
+            "id": "sensor_aed0d418",
+            "label": "Total Watts"
+          },
+          {
+            "id": "sensor_385e50cc",
+            "label": "Total Volts"
+          },
+          {
+            "id": "sensor_06f00fa7",
+            "label": "Total Amps"
+          },
+          {
+            "id": "sensor_cb821fc6",
+            "label": "Avg Prod Temp"
+          },
+          {
+            "id": "sensor_bd60f594",
+            "label": "Total case Watts"
+          }
+        ]
+      }
+    },
+    "role_dot_labels": {
+      "Evaporator.evaporator_3408df.outlet_circuit_1": {
+        "dx": 5.6015740019227,
+        "dy": -25.037481596923698
+      },
+      "Evaporator.evaporator_3408df.outlet_circuit_2": {
+        "dx": 4.473762882153437,
+        "dy": -22.02998527753897
+      },
+      "Evaporator.evaporator_3408df.outlet_circuit_3": {
+        "dx": 4.097825842230236,
+        "dy": -23.533733437231334
+      },
+      "SensorBulb.sensorbulb_aece27.measurement": {
+        "dx": 2.8948273144764016,
+        "dy": -26.428448644639133
+      },
+      "Fan.fan_097a50.sensor_0": {
+        "dx": -35.01891352757252,
+        "dy": -22.203721991843025
+      },
+      "TXV.txv_18cc9b.inlet": {
+        "dx": 3.060978694313917,
+        "dy": -24.78164542608755
+      },
+      "SensorBulb.sensorbulb_c3a80d.measurement": {
+        "dx": 0.41610233880987835,
+        "dy": -26.06700589792129
+      },
+      "Junction.junction_fddd85.outlet_2": {
+        "dx": -15.65090355911127,
+        "dy": 1.8648658938495828
+      },
+      "Fan.fan_2ea07b.sensor_0": {
+        "dx": -33.448202399885645,
+        "dy": -4.8091211714408075
+      },
+      "TXV.txv_e5856c.inlet": {
+        "dx": 5.926275992438548,
+        "dy": -21.342155009451744
+      },
+      "Condenser.condenser_fba9eb.water_out_temp": {
+        "dx": -39.592596232309916,
+        "dy": -3.461964523076688
+      },
+      "Condenser.condenser_fba9eb.water_in_temp": {
+        "dx": -1.0181869184621632,
+        "dy": 0.1339549892311993
+      },
+      "Condenser.condenser_fba9eb.inlet": {
+        "dx": 6.173652106153497,
+        "dy": -23.72987450153903
+      },
+      "Condenser.condenser_fba9eb.outlet": {
+        "dx": 5.192946784614946,
+        "dy": -18.826347893846503
+      },
+      "Fan.fan_6bb4dd.sensor_0": {
+        "dx": -1.998892240000714,
+        "dy": -26.67199046615454
+      },
+      "Fan.fan_6bb4dd.sensor_1": {
+        "dx": 7.808160975384311,
+        "dy": -14.903526607692498
+      },
+      "Evaporator.evaporator_3e6d38.outlet_circuit_1": {
+        "dx": 2.970014722461034,
+        "dy": -22.781859357385144
+      },
+      "Fan.fan_0fc456.sensor_0": {
+        "dx": -3.306499335385382,
+        "dy": -23.402972727692884
+      },
+      "Fan.fan_0fc456.sensor_1": {
+        "dx": 4.212241463076481,
+        "dy": -16.53803547692334
+      },
+      "Fan.fan_21a33b.sensor_0": {
+        "dx": -0.6912851446160175,
+        "dy": -22.749169180000536
+      },
+      "Fan.fan_21a33b.sensor_1": {
+        "dx": 4.539143236922655,
+        "dy": -18.172544346154183
+      },
+      "Fan.fan_f924ec.sensor_0": {
+        "dx": -5.182631254850321,
+        "dy": -25.91869507424815
+      },
+      "Fan.fan_f924ec.sensor_1": {
+        "dx": 3.6295035183942446,
+        "dy": -20.80197165752554
+      },
+      "Distributor.distributor_c9cc9b.inlet": {
+        "dx": -0.41247879424702205,
+        "dy": -26.406832264843565
+      },
+      "Distributor.distributor_954fc2.inlet": {
+        "dx": 0.581874676349571,
+        "dy": -25.909655529545276
+      },
+      "Distributor.distributor_d12051.inlet": {
+        "dx": 1.576228146946164,
+        "dy": -23.42377185305383
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r0_bottom_c0": {
+        "dx": 3.5649350881392365,
+        "dy": -21.43506491186065
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r0_top_c0": {
+        "dx": 4.708441579325381,
+        "dy": -4.282467544069675
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r1_bottom_c0": {
+        "dx": 2.993181842546278,
+        "dy": -20.863311666267634
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r1_top_c0": {
+        "dx": 4.136688333732309,
+        "dy": -3.7107142984766597
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r2_top_c0": {
+        "dx": 3.5649350881393502,
+        "dy": -1.4237013161044842
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r3_top_c0": {
+        "dx": 0.13441561458103024,
+        "dy": -0.2801948249184534
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r2_bottom_c0": {
+        "dx": 4.1366883337324225,
+        "dy": -23.722077894232825
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r3_bottom_c0": {
+        "dx": 1.8496753513601334,
+        "dy": -23.150324648639753
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r4_top_c0": {
+        "dx": 2.993181842546278,
+        "dy": -3.1389610528835874
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r4_bottom_c0": {
+        "dx": 2.4214285969533194,
+        "dy": -23.722077894232825
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_top_c0": {
+        "dx": 3.5649350881393502,
+        "dy": -1.9954545616975565
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_bottom_c0": {
+        "dx": 3.695652173913004,
+        "dy": -22.17391304347825
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_bottom_c1": {
+        "dx": 4.565217391304316,
+        "dy": -22.17391304347825
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_top_c1": {
+        "dx": 4.5652173913043725,
+        "dy": -3.9130434782608745
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r4_bottom_c1": {
+        "dx": 5.4347826086956275,
+        "dy": -23.043478260869506
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r4_top_c1": {
+        "dx": 6.304347826086996,
+        "dy": -3.043478260869506
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r3_bottom_c1": {
+        "dx": 5.4347826086956275,
+        "dy": -21.304347826086996
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r3_top_c1": {
+        "dx": 7.173913043478251,
+        "dy": -3.9130434782608745
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r2_bottom_c1": {
+        "dx": 5.434782608695684,
+        "dy": -22.17391304347825
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r2_top_c1": {
+        "dx": 5.434782608695684,
+        "dy": -3.913043478260761
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r1_bottom_c1": {
+        "dx": 4.5652173913043725,
+        "dy": -21.304347826086882
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r1_top_c1": {
+        "dx": 6.304347826086996,
+        "dy": -3.0434782608695627
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r0_bottom_c1": {
+        "dx": 4.565217391304316,
+        "dy": -23.043478260869563
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r0_top_c1": {
+        "dx": 7.173913043478251,
+        "dy": -3.0434782608695627
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r0_top_c2": {
+        "dx": 7.109805210816141,
+        "dy": -3.4248376756801235
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r0_bottom_c2": {
+        "dx": 6.452288978384146,
+        "dy": -22.492808416207765
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r1_top_c2": {
+        "dx": 3.822224048656196,
+        "dy": -2.1098052108161482
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r1_bottom_c2": {
+        "dx": 6.452288978384146,
+        "dy": -21.835292183775778
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r2_top_c2": {
+        "dx": 5.137256513520171,
+        "dy": -3.4248376756801235
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r2_bottom_c2": {
+        "dx": 4.4797402810881835,
+        "dy": -21.835292183775778
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r3_top_c2": {
+        "dx": 5.137256513520171,
+        "dy": -3.4248376756801235
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r3_bottom_c2": {
+        "dx": 5.137256513520171,
+        "dy": -21.177775951343847
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r4_top_c2": {
+        "dx": 5.137256513520178,
+        "dy": -0.13725651352012846
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_bottom_c2": {
+        "dx": 4.565217391304344,
+        "dy": -22.17391304347825
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_top_c2": {
+        "dx": 8.043478260869563,
+        "dy": -3.0434782608696196
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r4_bottom_c2": {
+        "dx": 4.565217391304344,
+        "dy": -23.913043478260875
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r0_top_c3": {
+        "dx": -33.59902587540782,
+        "dy": -2.567207807290572
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r0_bottom_c3": {
+        "dx": -30.16850640184964,
+        "dy": -26.009090876604944
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r1_top_c3": {
+        "dx": -32.45551938422179,
+        "dy": 1.4350649118606498
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r1_bottom_c3": {
+        "dx": -37.029545348966025,
+        "dy": -25.43733763101193
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r2_top_c3": {
+        "dx": -32.45551938422176,
+        "dy": 1.4350649118606498
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r2_bottom_c3": {
+        "dx": -34.742532366593906,
+        "dy": -25.43733763101193
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r3_top_c3": {
+        "dx": -33.02727262981483,
+        "dy": 1.4350649118606498
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r3_bottom_c3": {
+        "dx": -37.60129859455907,
+        "dy": -24.865584385418856
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r4_top_c3": {
+        "dx": -41.60357131371029,
+        "dy": -0.2801948249184534
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_bottom_c3": {
+        "dx": -43.890584296082466,
+        "dy": -27.152597367790918
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r5_top_c3": {
+        "dx": -42.74707780489638,
+        "dy": -1.9954545616975565
+      },
+      "ShelvingGrid.shelvinggrid_dac239.sensor_r4_bottom_c3": {
+        "dx": -45.034090787268525,
+        "dy": -24.293831139825897
+      },
+      "Compressor.compressor_a91fd4.SP": {
+        "dx": -44.23453035532253,
+        "dy": -21.530429621179906
+      },
+      "Compressor.compressor_a91fd4.DP": {
+        "dx": -44.228880639883215,
+        "dy": -12.593965575469326
+      },
+      "Compressor.compressor_a91fd4.inlet": {
+        "dx": -2.7972988407743173,
+        "dy": -24.583897661190093
+      },
+      "Compressor.compressor_a91fd4.RPM": {
+        "dx": 6.547995499929073,
+        "dy": -13.977413882386315
+      },
+      "Compressor.compressor_a91fd4.outlet": {
+        "dx": 5.5536420293324795,
+        "dy": -23.42377185305378
+      }
     }
   },
   "graphSensors": [],
   "ui": {
     "selectedSensors": [
-      "L1 Amps"
+      "Compressor RPM"
     ],
     "currentMode": "mapping",
     "selectedTimeRange": "All Data"
